@@ -15,6 +15,11 @@ const pengajuanSchema = new Schema({
     type: String,
     required: false,
   },
+  Tanggal: {
+    type: Date,
+    required: true,
+    default: Date.now,
+  },
   user: {
     ref: "User",
     type: Schema.Types.ObjectId,

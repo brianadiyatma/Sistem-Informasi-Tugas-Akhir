@@ -19,12 +19,13 @@ import {
 } from "@mui/material";
 import { Avatar } from "@mui/material";
 import {
-  AccountBox,
+  Book,
   DarkMode,
   Dashboard,
   DoorBack,
   Inventory,
   LightMode,
+  Note,
   Person,
 } from "@mui/icons-material";
 import Menu from "@mui/material/Menu";
@@ -47,20 +48,6 @@ const Navbar = () => {
       createTheme({
         palette: {
           mode: mode,
-          primary: {
-            main: "#4F826F",
-          },
-          secondary: {
-            main: "#000000",
-          },
-          success: {
-            main: "#e6e6e6",
-            light: "#F2F2F0",
-            dark: "#040404",
-          },
-          error: {
-            main: "#000000",
-          },
         },
       }),
     [mode]
@@ -139,18 +126,18 @@ const Navbar = () => {
                     <ListItemText primary="Dashboard" />
                   </ListItem>
                 </CustomLink>
-                <CustomLink to="/inventaris">
+                <CustomLink to="/pengajuan">
                   <ListItem button>
                     <ListItemIcon>
-                      <Inventory />
+                      <Note />
                     </ListItemIcon>
                     <ListItemText primary="Pengajuan" />
                   </ListItem>
                 </CustomLink>
-                <CustomLink to="/account">
+                <CustomLink to="/repository">
                   <ListItem button>
                     <ListItemIcon>
-                      <AccountBox />
+                      <Book />
                     </ListItemIcon>
                     <ListItemText primary="Repository" />
                   </ListItem>
