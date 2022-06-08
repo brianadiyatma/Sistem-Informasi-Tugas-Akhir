@@ -17,10 +17,11 @@ export const login = createAsyncThunk(
         email,
         password,
       });
-      if (response.data.user.role === "admin") {
-        return thunkAPI.rejectWithValue("Only User is Allowed");
+
+      if (response.data.user.role === "user") {
+        return thunkAPI.rejectWithValue("Only Admin is Allowed");
       }
-      localStorage.setItem("user", JSON.stringify(response.data));
+      localStorage.setItem("admin", JSON.stringify(response.data));
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.error);
@@ -33,14 +34,14 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     retriveLocalStorage: (state) => {
-      const user = localStorage.getItem("user");
+      const user = localStorage.getItem("admin");
       if (user) {
         state.user = JSON.parse(user);
       }
     },
     logout: (state) => {
       state.user = null;
-      localStorage.removeItem("user");
+      localStorage.removeItem("admin");
     },
   },
   extraReducers: {

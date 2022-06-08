@@ -70,7 +70,7 @@ exports.addAdmin = (req, res, next) => {
       email,
       password,
       activation: "activated",
-      privilege: "admin",
+      role: "admin",
     });
     bcrypt
       .hash(password, 12)
@@ -115,7 +115,7 @@ exports.getPengajuan = (req, res) => {
   const pageSize = +req.query.pagesize || 20;
   const currentPage = +req.query.page || 0;
 
-  Pengajuan.find({ user: req.user._id })
+  Pengajuan.find()
     .skip(currentPage * pageSize)
     .limit(pageSize)
     .then((documents) => {
@@ -159,10 +159,27 @@ exports.approvePengajuan = (req, res) => {
 };
 
 exports.deleteUserbyId = (req, res, next) => {
-  User.findByIdAndDelete(req.params.id)
+  console.log(req.body.id);
+  User.findByIdAndDelete(req.body.id)
     .then(() => {
       res.status(200).json({
         message: "Admin berhasil dihapus",
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: "Ada kesalahan",
+        error: err,
+      });
+    });
+};
+
+exports.deletePengajuanbyId = (req, res, next) => {
+  console.log(req.body.id);
+  Pengajuan.findByIdAndDelete(req.body.id)
+    .then(() => {
+      res.status(200).json({
+        message: "Pengajuan berhasil dihapus",
       });
     })
     .catch((err) => {

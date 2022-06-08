@@ -19,9 +19,10 @@ import {
 } from "@mui/material";
 import { Avatar } from "@mui/material";
 import {
+  AccountBox,
+  AdminPanelSettingsTwoTone,
   Book,
   DarkMode,
-  Dashboard,
   DoorBack,
   LightMode,
   Note,
@@ -60,6 +61,7 @@ const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [openSideBar, setOpenSideBar] = useState(false);
   const dispatch = useDispatch();
+
   return (
     <>
       <ThemeProvider theme={darkTheme}>
@@ -81,7 +83,7 @@ const Navbar = () => {
                   variant="h6"
                   sx={{ display: { xs: "none", sm: "block" } }}
                 >
-                  Sistem Informasi Tugas Akhir
+                  Sistem Informasi Tugas Akhir (Admin)
                 </Typography>
               </Box>
               <UserBox>
@@ -118,23 +120,31 @@ const Navbar = () => {
           >
             <Box role="presentation" sx={{ width: 250 }}>
               <List>
-                <CustomLink to="/">
+                <CustomLink to="/admin">
                   <ListItem button>
                     <ListItemIcon>
-                      <Dashboard />
+                      <AdminPanelSettingsTwoTone />
                     </ListItemIcon>
-                    <ListItemText primary="Dashboard" />
+                    <ListItemText primary="Admin Management" />
                   </ListItem>
                 </CustomLink>
-                <CustomLink to="/pengajuan">
+                <CustomLink to="/admin/user-management">
+                  <ListItem button>
+                    <ListItemIcon>
+                      <AccountBox />
+                    </ListItemIcon>
+                    <ListItemText primary="User Management" />
+                  </ListItem>
+                </CustomLink>
+                <CustomLink to="/admin/pengajuan">
                   <ListItem button>
                     <ListItemIcon>
                       <Note />
                     </ListItemIcon>
-                    <ListItemText primary="Pengajuan" />
+                    <ListItemText primary="Pengajuan Skripsi" />
                   </ListItem>
                 </CustomLink>
-                <CustomLink to="/repository">
+                <CustomLink to="/admin/repository">
                   <ListItem button>
                     <ListItemIcon>
                       <Book />

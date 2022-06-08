@@ -6,8 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "startClient": "cd client && npm start",
+    "startAdmin": "cd admin && npm start",
     "startServer": "nodemon app.js",
-    "start": "concurrently \"npm run startClient\" \"npm run startServer\""
+    "startAdminServer": "concurrently \"npm run startServer\" \"npm run startAdmin\"",
+    "startClientServer": "concurrently \"npm run startServer\" \"npm run startClient\""
   },
   "keywords": [],
   "author": "",

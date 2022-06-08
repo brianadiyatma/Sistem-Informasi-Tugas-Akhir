@@ -28,7 +28,7 @@ exports.login = (req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
-            privilege: user.privilege,
+            role: user.role,
           },
           process.env.JWT_SECRET
         );
@@ -38,7 +38,7 @@ exports.login = (req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
-            privilege: user.privilege,
+            role: user.role,
           },
         });
       });

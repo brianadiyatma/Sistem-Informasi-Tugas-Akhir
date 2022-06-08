@@ -27,12 +27,7 @@ const Dashboard = () => {
   const [pageCount, setPageCount] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
 
-  // const { user } = useSelector((state) => state.auth);
-  const user = {
-    token: "ABC",
-  };
-
-  console.error("Unhandled Error : you are dumb");
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     setLoading(true);
@@ -50,7 +45,7 @@ const Dashboard = () => {
         setError(true);
         setLoading(false);
       });
-  }, [currentPage]);
+  }, [currentPage, user]);
 
   return (
     <Container sx={{ marginTop: 2 }}>

@@ -56,7 +56,7 @@ export default function Login() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Login
+            Login (Admin)
           </Typography>
           {error && (
             <Alert severity="error" sx={{ width: "100%" }}>

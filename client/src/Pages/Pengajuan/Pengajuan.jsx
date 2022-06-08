@@ -19,16 +19,12 @@ const Pengajuan = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-
   const handleFormChange = (e) => {
     setJudul(e.target.value);
   };
-  
 
-  // const { user } = useSelector((state) => state.auth);
-  const user = {
-    token: "ABC",
-  };
+  const { user } = useSelector((state) => state.auth);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
