@@ -11,5 +11,7 @@ router.post("/approve-pengajuan", auth, isAdmin, adminCont.approvePengajuan);
 router.get("/get-user", auth, isAdmin, adminCont.getAllUsers);
 router.post("/delete-user", auth, isAdmin, adminCont.deleteUserbyId);
 router.post("/delete-pengajuan", auth, isAdmin, adminCont.deletePengajuanbyId);
+router.post("/repository", auth, isAdmin, adminCont.addRepository);
+router.get("/repository", auth, isAdmin, adminCont.getRepository);
 
 module.exports = router;

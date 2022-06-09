@@ -14,6 +14,10 @@ const RepositorySchema = new Schema({
     type: String,
     required: true,
   },
+  deskripsi: {
+    type: String,
+    required: true,
+  },
   pdf: {
     type: String,
     required: true,

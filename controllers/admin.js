@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const Pengajuan = require("../models/pengajuan");
 const validator = require("validator");
+const Repository = require("../models/repository");
 const bcrypt = require("bcrypt");
 
 exports.getAllUsers = (req, res, next) => {
@@ -187,5 +188,62 @@ exports.deletePengajuanbyId = (req, res, next) => {
         message: "Ada kesalahan",
         error: err,
       });
+    });
+};
+
+exports.addRepository = (req, res, next) => {
+  const { judul, tahun, penulis, deskripsi, pdf } = req.body;
+  const user = req.user._id;
+
+  if (!judul || !tahun || !penulis || !deskripsi || !pdf) {
+    return res.status(400).json({
+      message: "Isi semua field",
+    });
+  }
+  const newRepository = new Repository({
+    judul,
+    tahun,
+    penulis,
+    deskripsi,
+    pdf,
+    user,
+  });
+  newRepository
+    .save()
+    .then((repository) => {
+      res.status(201).json({
+        message: "Repository berhasil ditambahkan",
+        repository,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        message: "Ada kesalahan",
+      });
+    });
+};
+
+exports.getRepository = (req, res, next) => {
+  const pageSize = +req.query.pagesize || 20;
+  const currentPage = +req.query.page || 0;
+  Repository.find()
+    .skip(currentPage * pageSize)
+    .limit(pageSize)
+    .then((documents) => {
+      Repository.countDocuments()
+        .then((count) => {
+          res.status(200).json({
+            message: "Data Repository Berhasil Didapatkan",
+            repository: documents,
+            maxRepository: count,
+          });
+        })
+        .catch((err) => {
+          res.status(500).json({
+            message: "Error dalam pengambilan data",
+            error: err,
+          });
+        });
     });
 };

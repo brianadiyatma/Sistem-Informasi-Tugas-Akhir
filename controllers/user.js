@@ -39,3 +39,27 @@ exports.getPengajuan = (req, res) => {
         });
     });
 };
+
+exports.getRepository = (req, res, next) => {
+  const pageSize = +req.query.pagesize || 20;
+  const currentPage = +req.query.page || 0;
+  Repository.find()
+    .skip(currentPage * pageSize)
+    .limit(pageSize)
+    .then((documents) => {
+      Repository.countDocuments()
+        .then((count) => {
+          res.status(200).json({
+            message: "Data Repository Berhasil Didapatkan",
+            repository: documents,
+            maxRepository: count,
+          });
+        })
+        .catch((err) => {
+          res.status(500).json({
+            message: "Error dalam pengambilan data",
+            error: err,
+          });
+        });
+    });
+};
